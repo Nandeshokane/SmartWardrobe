@@ -2,38 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartWardrobe | AI-Powered Sustainable Fashion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SmartWardrobe | Mobile Optimized</title>
     <style>
         :root {
-            /* Modern Sustainable Color Palette */
-            --primary: #2d6a4f;      /* Deep Forest Green */
-            --accent: #d8f3dc;       /* Soft Mint */
-            --text-dark: #1b4332;    /* Dark Green Text */
-            --text-light: #74c69d;   /* Muted Green Text */
-            --bg-body: #f8f9fa;      /* Clean White/Grey */
-            --bg-card: #ffffff;      /* Pure White */
-            --alert: #e63946;        /* Soft Red for alerts */
-            --shadow: 0 10px 30px -10px rgba(45, 106, 79, 0.1);
+            --primary: #2d6a4f;
+            --accent: #d8f3dc;
+            --text-dark: #1b4332;
+            --bg-body: #f8f9fa;
+            --bg-card: #ffffff;
             --radius: 16px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent; /* Removes blue highlight on mobile tap */
         }
 
         body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-body);
             color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
+            padding-bottom: 80px; /* Space for bottom nav */
         }
 
-        /* --- Navigation --- */
-        nav {
+        /* --- DESKTOP NAVIGATION --- */
+        nav.top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -46,402 +43,356 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 800;
             color: var(--primary);
-            letter-spacing: -0.5px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .nav-links button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-left: 2rem;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links button:hover, .nav-links button.active {
-            color: var(--primary);
-            position: relative;
-        }
-
-        .nav-links button.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--primary);
-        }
-
-        /* --- Main Layout --- */
-        main {
-            padding: 2rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-            min-height: 85vh;
-        }
-
-        .section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        p.subtitle {
-            color: #6c757d;
-            margin-bottom: 2rem;
-        }
-
-        /* --- Dashboard Grid --- */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
+        .desktop-links {
+            display: flex;
             gap: 2rem;
         }
 
-        @media (max-width: 900px) {
-            .dashboard-grid { grid-template-columns: 1fr; }
+        .desktop-links button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #666;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .desktop-links button:hover, .desktop-links button.active {
+            color: var(--primary);
+        }
+
+        /* --- MOBILE BOTTOM NAVIGATION --- */
+        .bottom-nav {
+            display: none; /* Hidden on desktop */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 10px 0 25px 0; /* Extra padding for iPhone Home bar */
+            justify-content: space-around;
+            align-items: center;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #999;
+            background: none;
+            border: none;
+            width: 33%;
+        }
+
+        .nav-item svg {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            stroke: #999;
+            transition: 0.3s;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .nav-item.active svg {
+            stroke: var(--primary);
+            fill: var(--accent);
+        }
+
+        /* --- MAIN LAYOUT --- */
+        main {
+            padding: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- DASHBOARD --- */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Desktop layout */
+            gap: 1.5rem;
         }
 
         .card {
-            background: var(--bg-card);
+            background: white;
             border-radius: var(--radius);
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: var(--shadow);
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+        /* --- OUTFIT GENERATOR --- */
+        .outfit-display {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 10px;
+            margin-top: 1.5rem;
+            overflow-x: auto; /* Horizontal scroll on mobile */
+            padding-bottom: 10px;
         }
 
-        /* --- Wardrobe Gallery --- */
+        .outfit-piece {
+            min-width: 100px;
+            height: 140px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .refresh-btn {
+            width: 100%;
+            background: var(--text-dark);
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .refresh-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* --- CLOSET GRID --- */
         .clothes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
         }
 
         .clothing-item {
-            background: var(--bg-body);
+            background: white;
             border-radius: 12px;
-            height: 140px;
+            aspect-ratio: 1/1.2;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .clothing-item:hover {
-            transform: translateY(-5px);
-            border: 2px solid var(--accent);
-        }
-
-        .clothing-item img {
-            width: 80%;
-            height: auto;
-            opacity: 0.8;
-        }
-
-        .clothing-item span {
+            box-shadow: var(--shadow);
             font-size: 0.8rem;
-            margin-top: 10px;
-            color: var(--text-dark);
+            font-weight: 500;
         }
 
-        /* --- Upload Area --- */
         .upload-zone {
-            border: 2px dashed var(--text-light);
-            border-radius: var(--radius);
-            padding: 3rem;
-            text-align: center;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .upload-zone:hover {
-            background: var(--accent);
-            border-color: var(--primary);
-        }
-
-        .upload-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: transform 0.2s;
-        }
-
-        .upload-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- AI Recommendations --- */
-        .outfit-display {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .outfit-piece {
-            width: 150px;
-            height: 200px;
-            background: var(--accent);
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .refresh-ai {
-            width: 100%;
-            padding: 1rem;
-            background: var(--text-dark);
-            color: white;
-            border: none;
+            border: 2px dashed #ccc;
             border-radius: 12px;
-            margin-top: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            padding: 2rem;
+            text-align: center;
+            background: white;
+            margin-bottom: 1.5rem;
         }
 
-        /* --- Sustainability Stats --- */
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
+        /* --- MOBILE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .desktop-links { display: none; } /* Hide top links */
+            .bottom-nav { display: flex; }    /* Show bottom bar */
+            
+            nav.top-nav {
+                padding: 1rem;
+                justify-content: center;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr; /* Stack columns */
+                gap: 1rem;
+            }
+
+            .card {
+                padding: 1.2rem;
+            }
+
+            h1 { font-size: 1.5rem; }
+            
+            .outfit-piece {
+                min-width: 90px;
+                height: 120px;
+            }
         }
 
-        .stat-value {
-            font-weight: 700;
-            color: var(--primary);
+        /* Animation for tab switching */
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
         }
+        .section.active { display: block; }
 
-        .eco-badge {
-            display: inline-block;
-            padding: 5px 12px;
-            background: #d8f3dc;
-            color: #2d6a4f;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        /* --- Floating Action Button (for mobile) --- */
-        .fab {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .fab:hover { transform: scale(1.1); }
-
     </style>
 </head>
 <body>
 
-    <nav>
+    <nav class="top-nav">
         <div class="logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2 13 6h-2l-3-4-4.38 1.46a2 2 0 0 0-1.3 2.25l.6 9A2 2 0 0 0 4.9 16.4l4.1 4.1 1.3 1.3c.9.9 2.5 1 3.4 0l1.3-1.3 4.1-4.1a2 2 0 0 0 1.98-1.7l.6-9a2 2 0 0 0-1.3-2.24z"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2 13 6h-2l-3-4-4.38 1.46a2 2 0 0 0-1.3 2.25l.6 9A2 2 0 0 0 4.9 16.4l4.1 4.1 1.3 1.3c.9.9 2.5 1 3.4 0l1.3-1.3 4.1-4.1a2 2 0 0 0 1.98-1.7l.6-9a2 2 0 0 0-1.3-2.24z"></path></svg>
             SmartWardrobe
         </div>
-        <div class="nav-links">
-            <button class="active" onclick="switchTab('home')">Dashboard</button>
-            <button onclick="switchTab('closet')">My Closet</button>
-            <button onclick="switchTab('analytics')">Sustainability</button>
+        <div class="desktop-links">
+            <button onclick="switchTab('home')" class="active">Dashboard</button>
+            <button onclick="switchTab('closet')">Closet</button>
+            <button onclick="switchTab('analytics')">Stats</button>
         </div>
     </nav>
 
     <main>
         <section id="home" class="section active">
             <div class="dashboard-grid">
-                
                 <div class="card">
-                    <h2>
-                        AI Outfit of the Day
-                        <span class="eco-badge">Weather: 24°C Sunny</span>
-                    </h2>
-                    <p style="color: #666;">Based on your style preference and local weather.</p>
-                    
-                    <div class="outfit-display" id="outfit-container">
-                        <div class="outfit-piece">Top</div>
-                        <div class="outfit-piece">Bottom</div>
-                        <div class="outfit-piece">Shoes</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <h2>Today's Look</h2>
+                        <span style="background:#e0f2f1; color:#00695c; padding:4px 8px; border-radius:8px; font-size:0.75rem; font-weight:700;">24°C Sunny</span>
                     </div>
                     
-                    <button class="refresh-ai" onclick="generateOutfit()">
+                    <div class="outfit-display" id="outfit-container">
+                        <div class="outfit-piece">Linen Shirt</div>
+                        <div class="outfit-piece">Chino Shorts</div>
+                        <div class="outfit-piece">Loafers</div>
+                    </div>
+
+                    <button class="refresh-btn" onclick="generateOutfit()">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 1 20.49 15"></path></svg>
-                        Regenerate Outfit
+                        Remix Outfit
                     </button>
                 </div>
 
-                <div>
-                    <div class="card">
-                        <h2>Details</h2>
-                        <div class="stat-row">
-                            <span>Total Items</span>
-                            <span class="stat-value">42</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>Most Worn</span>
-                            <span class="stat-value">Blue Denim</span>
-                        </div>
-                        <div class="stat-row">
-                            <span>Unused Items</span>
-                            <span class="stat-value" style="color: var(--alert);">5 (Donate?)</span>
-                        </div>
-                    </div>
-
-                    <div class="card" style="background: var(--primary); color: white;">
-                        <h2>Eco Impact</h2>
-                        <p>You've saved <strong>2,400L</strong> of water this month by re-wearing outfits.</p>
-                    </div>
+                <div class="card" style="background: var(--primary); color: white;">
+                    <h3>Impact Score</h3>
+                    <div style="font-size: 2.5rem; font-weight: 700; margin: 10px 0;">A+</div>
+                    <p style="opacity: 0.9; font-size: 0.9rem;">You are in the top 5% of sustainable users this week!</p>
                 </div>
-
             </div>
         </section>
 
         <section id="closet" class="section">
-            <h1>Digital Closet</h1>
-            <p class="subtitle">Manage your inventory and digitize your wardrobe.</p>
-
-            <div class="card">
-                <div class="upload-zone" onclick="triggerUpload()">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                    <h3>Upload New Item</h3>
-                    <p>Drag & drop or click to scan clothing</p>
-                </div>
+            <h1>My Closet</h1>
+            <p class="subtitle">42 items • Value $1,200</p>
+            
+            <div class="upload-zone" onclick="alert('Opens camera on mobile')">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <div style="margin-top:10px; font-weight:600; color:var(--primary);">Add Clothes</div>
             </div>
 
             <div class="clothes-grid">
-                <div class="clothing-item"><span>White Tee</span></div>
-                <div class="clothing-item"><span>Blue Jeans</span></div>
-                <div class="clothing-item"><span>Sneakers</span></div>
-                <div class="clothing-item"><span>Jacket</span></div>
-                <div class="clothing-item"><span>Scarf</span></div>
-                <div class="clothing-item"><span>Blazer</span></div>
-                <div class="clothing-item"><span>Chinos</span></div>
+                <div class="clothing-item">White Tee</div>
+                <div class="clothing-item">Denim Jacket</div>
+                <div class="clothing-item">Black Jeans</div>
+                <div class="clothing-item">Sneakers</div>
+                <div class="clothing-item">Scarf</div>
+                <div class="clothing-item">Hoodie</div>
             </div>
         </section>
 
         <section id="analytics" class="section">
-            <h1>Sustainability Tracker</h1>
-            <p class="subtitle">Visualizing your contribution to a greener planet.</p>
-            
-            <div class="dashboard-grid">
-                <div class="card">
-                    <h2>Wear Rate Analysis</h2>
-                    <div style="height: 200px; display: flex; align-items: flex-end; justify-content: space-around; padding-bottom: 20px;">
-                        <div style="width: 40px; height: 60%; background: #d8f3dc; border-radius: 4px;"></div>
-                        <div style="width: 40px; height: 80%; background: #95d5b2; border-radius: 4px;"></div>
-                        <div style="width: 40px; height: 40%; background: #52b788; border-radius: 4px;"></div>
-                        <div style="width: 40px; height: 90%; background: #2d6a4f; border-radius: 4px;"></div>
-                    </div>
-                    <p style="text-align: center; font-size: 0.9rem;">Your utilization has increased by <strong>15%</strong> since last month.</p>
+            <h1>Sustainability</h1>
+            <div class="card">
+                <h3>Wardrobe Usage</h3>
+                <div style="display:flex; align-items:flex-end; gap:8px; height:150px; padding-top:20px;">
+                    <div style="flex:1; background:#d8f3dc; height:40%; border-radius:4px;"></div>
+                    <div style="flex:1; background:#b7e4c7; height:60%; border-radius:4px;"></div>
+                    <div style="flex:1; background:#74c69d; height:30%; border-radius:4px;"></div>
+                    <div style="flex:1; background:#2d6a4f; height:80%; border-radius:4px;"></div>
                 </div>
+                <p style="margin-top:15px; font-size:0.9rem; color:#666;">You wore 80% of your wardrobe this month.</p>
             </div>
         </section>
-
     </main>
 
-    <div class="fab" onclick="switchTab('closet')">+</div>
+    <div class="bottom-nav">
+        <button class="nav-item active" onclick="switchTab('home')" id="nav-home">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Home
+        </button>
+        <button class="nav-item" onclick="switchTab('closet')" id="nav-closet">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2 13 6h-2l-3-4-4.38 1.46a2 2 0 0 0-1.3 2.25l.6 9A2 2 0 0 0 4.9 16.4l4.1 4.1 1.3 1.3c.9.9 2.5 1 3.4 0l1.3-1.3 4.1-4.1a2 2 0 0 0 1.98-1.7l.6-9a2 2 0 0 0-1.3-2.24z"></path></svg>
+            Closet
+        </button>
+        <button class="nav-item" onclick="switchTab('analytics')" id="nav-analytics">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            Stats
+        </button>
+    </div>
 
     <script>
-        // Tab Switching Logic
         function switchTab(tabId) {
-            // Remove active class from all sections
-            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-            // Remove active class from all nav buttons
-            document.querySelectorAll('.nav-links button').forEach(btn => btn.classList.remove('active'));
-
-            // Add active class to selected section
+            // 1. Hide all sections
+            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+            
+            // 2. Show selected section
             document.getElementById(tabId).classList.add('active');
             
-            // Highlight correct nav button (simple index matching for this demo)
-            const index = ['home', 'closet', 'analytics'].indexOf(tabId);
-            if(index >= 0) {
-                document.querySelectorAll('.nav-links button')[index].classList.add('active');
+            // 3. Update Bottom Nav (Mobile)
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('nav-' + tabId).classList.add('active');
+
+            // 4. Update Top Nav (Desktop)
+            document.querySelectorAll('.desktop-links button').forEach(btn => btn.classList.remove('active'));
+            // Simple logic for desktop match
+            const desktopIndex = ['home', 'closet', 'analytics'].indexOf(tabId);
+            if (desktopIndex > -1) {
+                document.querySelectorAll('.desktop-links button')[desktopIndex].classList.add('active');
             }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
 
-        // Mock AI Outfit Generator
         function generateOutfit() {
             const container = document.getElementById('outfit-container');
             container.style.opacity = '0.5';
-            
             setTimeout(() => {
-                const tops = ["White Tee", "Navy Polo", "Check Shirt", "Beige Sweater"];
-                const bottoms = ["Blue Jeans", "Grey Chinos", "Black Slacks", "Shorts"];
-                const shoes = ["Sneakers", "Loafers", "Boots"];
-
-                const randomTop = tops[Math.floor(Math.random() * tops.length)];
-                const randomBottom = bottoms[Math.floor(Math.random() * bottoms.length)];
-                const randomShoe = shoes[Math.floor(Math.random() * shoes.length)];
+                const tops = ["Navy Polo", "Beige Hoodie", "Graphic Tee", "Linen Shirt"];
+                const bottoms = ["Grey Sweats", "Denim Shorts", "Chinos", "Jeans"];
+                const shoes = ["White Sneakers", "Boots", "Slides", "Loafers"];
 
                 container.innerHTML = `
-                    <div class="outfit-piece" style="background:#e9ecef; color:#333;">${randomTop}</div>
-                    <div class="outfit-piece" style="background:#dee2e6; color:#333;">${randomBottom}</div>
-                    <div class="outfit-piece" style="background:#ced4da; color:#333;">${randomShoe}</div>
+                    <div class="outfit-piece">${tops[Math.floor(Math.random() * tops.length)]}</div>
+                    <div class="outfit-piece">${bottoms[Math.floor(Math.random() * bottoms.length)]}</div>
+                    <div class="outfit-piece">${shoes[Math.floor(Math.random() * shoes.length)]}</div>
                 `;
                 container.style.opacity = '1';
-            }, 500);
-        }
-
-        // Mock Upload Trigger
-        function triggerUpload() {
-            alert("Camera/File Upload Interface would open here.\n(Simulated for IDT Project Demo)");
+            }, 300);
         }
     </script>
 </body>
